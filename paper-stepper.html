@@ -1,0 +1,76 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../iron-selector/iron-selectable.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-styles/paper-styles.html">
+
+<dom-module id='paper-stepper'>
+
+	<template>
+
+		<style>
+			:host {
+				@apply(--layout-horizontal);
+				@apply(--layout-center-center);
+			}
+
+			.nav {
+				color: var(--secondary-text-color);
+				text-transform: uppercase;
+				font-weight: 500!important;
+				@apply(--paper-font-body1);
+			}
+
+			.steps {
+				text-align: center;
+			}
+		</style>
+
+		<paper-button class='nav' on-tap='_tapPrevious'>
+			<iron-icon icon='icons:chevron-left'></iron-icon>
+			Back
+		</paper-button>
+
+		<div class='flex steps'>
+			<content select='*'></content>
+		</div>
+
+		<paper-button class='nav' on-tap='_tapNext'>
+			Next
+			<iron-icon icon='icons:chevron-right'></iron-icon>
+		</paper-button>
+
+	</template>
+</dom-module>
+
+<script>
+
+(function() {
+
+	Polymer({
+		is: 'paper-stepper',
+		properties: {
+			selected: {
+				type: Number,
+				value: 0,
+				notify: true
+			}
+		},
+
+	    behaviors: [
+	    	Polymer.IronSelectableBehavior
+	    ],
+
+		// Private methods
+		_tapPrevious: function() {
+			this.selectPrevious();
+		},
+		_tapNext: function() {
+			this.selectNext();
+		}
+	});
+
+})();
+
+</script>
