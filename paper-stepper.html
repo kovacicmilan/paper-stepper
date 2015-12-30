@@ -5,6 +5,22 @@
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-styles/paper-styles.html">
 
+<!--
+A Material Design [stepper](https://www.google.com/design/spec/components/steppers.html).
+
+### Example
+
+```html
+<paper-stepper>
+  <paper-step></paper-step>
+  <paper-step></paper-step>
+  <paper-step></paper-step>
+</paper-stepper>
+```
+
+
+@demo demo/index.html
+-->
 <dom-module id='paper-stepper'>
 
 	<template>
@@ -51,6 +67,9 @@
 	Polymer({
 		is: 'paper-stepper',
 		properties: {
+			/**
+			 * Index of the selected step
+			 */
 			selected: {
 				type: Number,
 				value: 0,
