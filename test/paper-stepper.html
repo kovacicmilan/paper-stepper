@@ -49,6 +49,19 @@
 						element._tapPrevious();
 						expect(element.selected).to.be.eql(0);
 					});
+
+					test('shows previous step if not in the beginning', function() {
+						expect(element._hasPrev(1)).to.be.true;
+					});
+					test('doesn\'t shows previous step if in the beginning', function() {
+						expect(element._hasPrev(0)).to.be.false;
+					});
+					test('shows next step if not in the end', function() {
+						expect(element._hasNext(0,2)).to.be.true;
+					});
+					test('doesn\'t shows next step if in the end', function() {
+						expect(element._hasNext(1,2)).to.be.false;
+					});
 				});
 			});
 		</script>
