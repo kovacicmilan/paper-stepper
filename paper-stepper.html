@@ -38,12 +38,17 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 				@apply(--paper-font-body1);
 			}
 
+			/* Hide nav buttons if they are disabled */
+			.nav[disabled] {
+				opacity: 0;
+			}
+
 			.steps {
 				text-align: center;
 			}
 		</style>
 
-		<paper-button class='nav' on-tap='_tapPrevious'>
+		<paper-button class='nav' on-tap='_tapPrevious' disabled=[[!_hasPrev(selected)]]>
 			<iron-icon icon='icons:chevron-left'></iron-icon>
 			Back
 		</paper-button>
@@ -52,7 +57,7 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 			<content select='*'></content>
 		</div>
 
-		<paper-button class='nav' on-tap='_tapNext'>
+		<paper-button class='nav' on-tap='_tapNext' disabled=[[!_hasNext(selected,items.length)]]>
 			Next
 			<iron-icon icon='icons:chevron-right'></iron-icon>
 		</paper-button>
@@ -87,6 +92,20 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 		},
 		_tapNext: function() {
 			this.selectNext();
+		},
+
+		/**
+		 * Returns true if there is a step before the current
+		 */
+		_hasPrev: function(selected) {
+			return selected > 0;
+		},
+
+		/**
+		 * Returns true if there is a step after the current
+		 */
+		_hasNext: function(selected, nrItems) {
+			return selected < nrItems - 1;
 		}
 	});
 
