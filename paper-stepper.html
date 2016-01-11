@@ -58,7 +58,7 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 		</div>
 
 		<template is="dom-if" if="[[progressBar]]">
-		  <paper-progress class='flex progress' max='[[items.length]]' value='[[selected]]'></paper-progress>
+			<paper-progress class='flex progress' max='[[items.length]]' value='[[_computeProgressValue(selected)]]'></paper-progress>
 		</template>
 
 		<paper-button class='nav' on-tap='_tapNext' disabled=[[!_hasNext(selected,items.length)]]>
@@ -118,7 +118,13 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 		 */
 		_hasNext: function(selected, nrItems) {
 			return selected < nrItems - 1;
-		}
+		},
+
+		/**
+		 * Returns the current progress value
+		 */
+		_computeProgressValue: function(selected) {
+		  return selected + 1;
 	});
 
 })();
