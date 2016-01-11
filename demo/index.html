@@ -1,23 +1,32 @@
 <html>
 	<head>
 	    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+		<link rel="import" href="../../paper-styles/demo-pages.html">
 		<link rel="import" href="../paper-stepper.html">
 		<link rel="import" href="../paper-step.html">
 	</head>
 
 	<body>
-		<paper-stepper>
-			<paper-step></paper-step>
-			<paper-step></paper-step>
-			<paper-step></paper-step>
-			<paper-step></paper-step>
-		</paper-stepper>
+		<h2>Stepper with dots</h2>
 
-		<paper-stepper progress-bar>
-			<paper-step></paper-step>
-			<paper-step></paper-step>
-			<paper-step></paper-step>
-			<paper-step></paper-step>
-		</paper-stepper>
+		<div class="vertical-section">
+			<paper-stepper>
+				<paper-step></paper-step>
+				<paper-step></paper-step>
+				<paper-step></paper-step>
+				<paper-step></paper-step>
+			</paper-stepper>
+		</div>
+
+		<h2>Stepper with progress bar</h2>
+
+		<div class="vertical-section">
+			<paper-stepper progress-bar>
+				<paper-step></paper-step>
+				<paper-step></paper-step>
+				<paper-step></paper-step>
+				<paper-step></paper-step>
+			</paper-stepper>
+		</div>
 	</body>
 </html>
