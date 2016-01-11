@@ -59,7 +59,7 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 		</div>
 
 		<template is='dom-if' if=[[progressBar]]>
-			<paper-progress class='flex progress' max=[[items.length]] value=[[_computeProgressValue(selected)]]></paper-progress>
+			<paper-progress class='flex progress' max=[[items.length]] value=[[_computeProgressValue(selected,items)]]></paper-progress>
 		</template>
 
 		<paper-button class='nav' on-tap='_tapNext' disabled=[[!_hasNext(selected,items.length)]]>
@@ -123,8 +123,13 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 
 		/**
 		 * Returns the current progress value
+		 *
+		 * Depends on items to ensure that `max` is already set. Otherwise
+		 * `paper-progress` doesn't show the bar on startup.
+		 * TODO: Remove parameter `items` once paper-progress can handle
+		 * setting the property `value` before property `max`.
 		 */
-		_computeProgressValue: function(selected) {
+		_computeProgressValue: function(selected, items) {
 			return selected + 1;
 		}
 
