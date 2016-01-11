@@ -3,6 +3,7 @@
 <link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../iron-selector/iron-selectable.html">
 <link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-progress/paper-progress.html">
 <link rel="import" href="../paper-styles/paper-styles.html">
 
 <!--
@@ -57,7 +58,7 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 		  <content select='*'></content>
 		</div>
 
-		<template is="dom-if" if="[[progressBar]]">
+		<template is='dom-if' if='[[progressBar]]'>
 			<paper-progress class='flex progress' max='[[items.length]]' value='[[_computeProgressValue(selected)]]'></paper-progress>
 		</template>
 
@@ -94,9 +95,9 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 			}
 		},
 
-	    behaviors: [
-	    	Polymer.IronSelectableBehavior
-	    ],
+		behaviors: [
+			Polymer.IronSelectableBehavior
+		],
 
 		// Private methods
 		_tapPrevious: function() {
@@ -124,7 +125,9 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 		 * Returns the current progress value
 		 */
 		_computeProgressValue: function(selected) {
-		  return selected + 1;
+			return selected + 1;
+		}
+
 	});
 
 })();
