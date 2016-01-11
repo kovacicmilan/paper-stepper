@@ -3,6 +3,7 @@
 <link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../iron-selector/iron-selectable.html">
 <link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-progress/paper-progress.html">
 <link rel="import" href="../paper-styles/paper-styles.html">
 
 <!--
@@ -53,9 +54,13 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 			Back
 		</paper-button>
 
-		<div class='flex steps'>
-			<content select='*'></content>
+		<div class='flex steps' hidden$='[[progressBar]]'>
+		  <content select='*'></content>
 		</div>
+
+		<template is='dom-if' if='[[progressBar]]'>
+			<paper-progress class='flex progress' max='[[items.length]]' value='[[_computeProgressValue(selected)]]'></paper-progress>
+		</template>
 
 		<paper-button class='nav' on-tap='_tapNext' disabled=[[!_hasNext(selected,items.length)]]>
 			Next
@@ -79,12 +84,20 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 				type: Number,
 				value: 0,
 				notify: true
+			},
+
+			/**
+			 * Use a progress bar instead of dots
+			 */
+			progressBar: {
+				type: Boolean,
+				value: false
 			}
 		},
 
-	    behaviors: [
-	    	Polymer.IronSelectableBehavior
-	    ],
+		behaviors: [
+			Polymer.IronSelectableBehavior
+		],
 
 		// Private methods
 		_tapPrevious: function() {
@@ -106,7 +119,15 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 		 */
 		_hasNext: function(selected, nrItems) {
 			return selected < nrItems - 1;
+		},
+
+		/**
+		 * Returns the current progress value
+		 */
+		_computeProgressValue: function(selected) {
+			return selected + 1;
 		}
+
 	});
 
 })();
