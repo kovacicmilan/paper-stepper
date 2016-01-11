@@ -87,7 +87,11 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 			},
 
 			/**
-			 * Use a progress bar instead of dots
+			 * True if a progress bar is shown instead of dots.
+			 *
+			 * Use a progress bar when there are many steps, or if there are
+			 * steps that need to be inserted during the process (based o
+			 * responses to earlier steps).
 			 */
 			progressBar: {
 				type: Boolean,
