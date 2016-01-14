@@ -2,6 +2,7 @@
 	<head>
 	    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 		<link rel="import" href="../../paper-styles/demo-pages.html">
+		<link rel="import" href="../../iron-pages/iron-pages.html">
 		<link rel="import" href="../paper-stepper.html">
 		<link rel="import" href="../paper-step.html">
 	</head>
@@ -10,12 +11,21 @@
 		<h2>Stepper with dots</h2>
 
 		<div class="vertical-section">
-			<paper-stepper>
-				<paper-step></paper-step>
-				<paper-step></paper-step>
-				<paper-step></paper-step>
-				<paper-step></paper-step>
-			</paper-stepper>
+			<template is="dom-bind">
+				<paper-stepper selected={{selected}}>
+					<paper-step></paper-step>
+					<paper-step></paper-step>
+					<paper-step></paper-step>
+					<paper-step></paper-step>
+				</paper-stepper>
+			
+				<iron-pages selected=[[selected]]>
+					<div>Step 1</div>
+					<div>Step 2</div>
+					<div>Step 3</div>
+					<div>Step 4</div>
+				</iron-pages>
+			</template>
 		</div>
 
 		<h2>Stepper with progress bar</h2>
