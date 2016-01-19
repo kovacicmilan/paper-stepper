@@ -22,7 +22,7 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 
 @demo demo/index.html
 -->
-<dom-module id='paper-stepper'>
+<dom-module id="paper-stepper">
 
 	<template>
 
@@ -49,22 +49,22 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 			}
 		</style>
 
-		<paper-button class='nav' on-tap='_tapPrevious' disabled=[[!_hasPrev(selected)]]>
-			<iron-icon icon='icons:chevron-left'></iron-icon>
+		<paper-button class="nav" on-tap="_tapPrevious" disabled=[[!_hasPrev(selected)]]>
+			<iron-icon icon="icons:chevron-left"></iron-icon>
 			Back
 		</paper-button>
 
-		<div class='flex steps' hidden=[[progressBar]]>
-		  <content select='*'></content>
+		<div class="flex steps" hidden=[[progressBar]]>
+		  <content select="*"></content>
 		</div>
 
-		<template is='dom-if' if=[[progressBar]]>
-			<paper-progress class='flex progress' max=[[items.length]] value=[[_computeProgressValue(selected,items)]]></paper-progress>
+		<template is="dom-if" if=[[progressBar]]>
+			<paper-progress class="flex progress" max=[[items.length]] value=[[_computeProgressValue(selected,items)]]></paper-progress>
 		</template>
 
-		<paper-button class='nav' on-tap='_tapNext' disabled=[[!_hasNext(selected,items.length)]]>
+		<paper-button class="nav" on-tap="_tapNext" disabled=[[!_hasNext(selected,items.length)]]>
 			Next
-			<iron-icon icon='icons:chevron-right'></iron-icon>
+			<iron-icon icon="icons:chevron-right"></iron-icon>
 		</paper-button>
 
 	</template>
