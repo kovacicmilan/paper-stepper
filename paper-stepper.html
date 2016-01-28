@@ -51,7 +51,7 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 
 		<paper-button class="nav" on-tap="_tapPrevious" disabled=[[!_hasPrev(selected)]]>
 			<iron-icon icon="icons:chevron-left"></iron-icon>
-			Back
+			[[backLabel]]
 		</paper-button>
 
 		<div class="flex steps" hidden=[[progressBar]]>
@@ -63,7 +63,7 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 		</template>
 
 		<paper-button class="nav" on-tap="_tapNext" disabled=[[!_hasNext(selected,items.length)]]>
-			Next
+			[[nextLabel]]
 			<iron-icon icon="icons:chevron-right"></iron-icon>
 		</paper-button>
 
@@ -96,6 +96,22 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 			progressBar: {
 				type: Boolean,
 				value: false
+			},
+
+			/**
+			 * Text for the back button. Use this property to localize the element.
+			 */
+			backLabel: {
+				type: String,
+				value: 'Back'
+			},
+
+			/**
+			 * Text for the back button. Use this property to localize the element.
+			 */
+			nextLabel: {
+				type: String,
+				value: 'Next'
 			}
 		},
 
