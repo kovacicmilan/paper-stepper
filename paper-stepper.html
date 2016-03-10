@@ -1,7 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../iron-icons/iron-icons.html">
-<link rel="import" href="../iron-selector/iron-selectable.html">
+<link rel="import" href="../iron-selector/iron-selector.html">
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-progress/paper-progress.html">
 <link rel="import" href="../paper-styles/paper-styles.html">
@@ -55,14 +55,16 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 		</paper-button>
 
 		<div class="flex steps" hidden$="[[progressBar]]">
-		  <content select="*"></content>
+			<iron-selector id="selector" selected="{{selected}}" items="{{_items}}" on-iron-items-changed="_onItemsChanged">
+				<content></content>
+			</iron-selector>
 		</div>
 
 		<template is="dom-if" if="[[progressBar]]">
-			<paper-progress class="flex progress" max="[[items.length]]" value="[[_computeProgressValue(selected,items)]]"></paper-progress>
+			<paper-progress class="flex progress" max="[[_items.length]]" value="[[_computeProgressValue(selected,_items)]]"></paper-progress>
 		</template>
 
-		<paper-button class="nav" on-tap="_tapNext" disabled="[[!_hasNext(selected,items.length)]]">
+		<paper-button class="nav" on-tap="_tapNext" disabled="[[!_hasNext(selected,_items.length)]]">
 			[[nextLabel]]
 			<iron-icon icon="icons:chevron-right"></iron-icon>
 		</paper-button>
@@ -77,13 +79,10 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 	Polymer({
 		is: 'paper-stepper',
 		properties: {
-			/**
-			 * Index of the selected step
-			 */
 			selected: {
 				type: Number,
-				value: 0,
-				notify: true
+				notify: true,
+				value: 0
 			},
 
 			/**
@@ -115,16 +114,12 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 			}
 		},
 
-		behaviors: [
-			Polymer.IronSelectableBehavior
-		],
-
 		// Private methods
 		_tapPrevious: function() {
-			this.selectPrevious();
+			this.$.selector.selectPrevious();
 		},
 		_tapNext: function() {
-			this.selectNext();
+			this.$.selector.selectNext();
 		},
 
 		/**
@@ -151,8 +146,11 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 		 */
 		_computeProgressValue: function(selected, items) {
 			return selected + 1;
-		}
+		},
 
+		_onItemsChanged: function(e) {
+			this._items = this.$.selector.items;
+		}
 	});
 
 })();
