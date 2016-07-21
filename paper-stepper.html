@@ -61,10 +61,10 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 		</div>
 
 		<template is="dom-if" if="[[progressBar]]">
-			<paper-progress class="flex progress" max="[[_items.length]]" value="[[_computeProgressValue(selected,_items)]]"></paper-progress>
+			<paper-progress class="flex progress" max="[[_items.length]]" value="[[_computeProgressValue(selected, _items)]]"></paper-progress>
 		</template>
 
-		<paper-button class="nav" on-tap="_tapNext" disabled="[[!_getDisableNext(selected,_items.length, disableNext)]]">
+		<paper-button class="nav" on-tap="_tapNext" disabled="[[!_getDisableNext(selected, _items.length, disableNext)]]">
 			[[nextLabel]]
 			<iron-icon icon="icons:chevron-right"></iron-icon>
 		</paper-button>
