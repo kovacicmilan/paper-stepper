@@ -49,7 +49,7 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 			}
 		</style>
 
-		<paper-button class="nav" on-tap="_tapPrevious" disabled="[[!_hasPrev(selected)]]">
+		<paper-button class="nav" on-tap="_tapPrevious" disabled="[[!_disablePrevious(selected, disablePrevious)]]">
 			<iron-icon icon="icons:chevron-left"></iron-icon>
 			[[backLabel]]
 		</paper-button>
@@ -64,7 +64,7 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 			<paper-progress class="flex progress" max="[[_items.length]]" value="[[_computeProgressValue(selected,_items)]]"></paper-progress>
 		</template>
 
-		<paper-button class="nav" on-tap="_tapNext" disabled="[[!_hasNext(selected,_items.length)]]">
+		<paper-button class="nav" on-tap="_tapNext" disabled="[[!_disableNext(selected,_items.length, disableNext)]]">
 			[[nextLabel]]
 			<iron-icon icon="icons:chevron-right"></iron-icon>
 		</paper-button>
@@ -111,6 +111,20 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 			nextLabel: {
 				type: String,
 				value: 'Next'
+			},
+			/**
+			 * Boolean for disabling the previous button.
+			 */
+			disablePrevious: {
+				type: Boolean,
+				value: false
+			},
+			/**
+			 * Boolean for disabling the next button.
+			 */
+			disableNext: {
+				type: Boolean,
+				value: false
 			}
 		},
 
@@ -123,17 +137,19 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 		},
 
 		/**
-		 * Returns true if there is a step before the current
+		 * Returns true if there is a step before the current and if
+		 * _disablePrevious is set to false
 		 */
-		_hasPrev: function(selected) {
-			return selected > 0;
+		_disablePrevious: function(selected, disablePrevious) {
+			return selected > 0 && !disablePrevious;
 		},
 
 		/**
-		 * Returns true if there is a step after the current
+		 * Returns true if there is a step after the current and if
+		 * _disableNext is set to false
 		 */
-		_hasNext: function(selected, nrItems) {
-			return selected < nrItems - 1;
+		_disableNext: function(selected, nrItems, disableNext) {
+			return selected < nrItems - 1 && !disableNext;
 		},
 
 		/**
