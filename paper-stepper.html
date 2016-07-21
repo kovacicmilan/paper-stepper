@@ -140,7 +140,7 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 		 * Returns true if there is a step before the current and if
 		 * _disablePrevious is set to false
 		 */
-		_disablePrevious: function(selected, disablePrevious) {
+		_getDisablePrevious: function(selected, disablePrevious) {
 			return selected > 0 && !disablePrevious;
 		},
 
@@ -148,7 +148,7 @@ A Material Design [stepper](https://www.google.com/design/spec/components/steppe
 		 * Returns true if there is a step after the current and if
 		 * _disableNext is set to false
 		 */
-		_disableNext: function(selected, nrItems, disableNext) {
+		_getDisableNext: function(selected, nrItems, disableNext) {
 			return selected < nrItems - 1 && !disableNext;
 		},
 
